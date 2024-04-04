@@ -1,0 +1,74 @@
+package CCE1026546;
+
+import java.text.DecimalFormat;
+
+import javax.swing.JOptionPane;
+
+public class MenuGUIForm {
+
+	public static void main(String[] args) {
+		
+		DecimalFormat df = new DecimalFormat("##.00");
+
+		//Initialize price to ensure that price begins at zero
+		double price = 0;
+		int order;
+		
+		do {
+		String Input = JOptionPane.showInputDialog( 
+		"Nic's Carenderia \n"+
+		"1. Combo 1 \n"+
+		"2. Combo 2 \n"+
+		"3. Sulit Meal \n"+
+		"4. Super Meal \n"+
+		"5. Pay \n"+
+		"Your Order: ");
+		
+		// Convert Input to integer
+    order = Integer.parseInt(Input);
+		
+    //Process
+    if (order == 1) 
+		{JOptionPane.showMessageDialog(null, 
+		"Garlic Rice \n"+
+		"Stir Fry Veggies \n"+
+		"Fried Chicken \n"+
+		"Softdrinks \n");
+		price = 89.00;
+		
+		}else if (order == 2) 
+		{JOptionPane.showMessageDialog(null, 
+		"Garlic Rice \n"+
+		"Broccoli with beef \n"+
+		"Lechon Kawali \n"+
+		"Softdrinks \n");
+		price += 99.00;
+		
+	  }else if (order == 3) 
+		{JOptionPane.showMessageDialog(null, 
+		"Garlic Rice \n"+
+		"Pansit Canton \n"+
+		"Pork BBQ \n"+
+		"Softdrinks \n");
+		price += 79.00;
+		
+		}else if (order == 4) 
+		{JOptionPane.showMessageDialog(null, 
+		"Unli Garlic Rice \n"+
+		"Stir Fry Veggies \n"+
+		"Fried Chicken \n"+
+		"Lechon Kawali \n" +
+		"Softdrinks \n");
+		price += 109.00;
+		
+		}else if (order == 5) 
+		{JOptionPane.showMessageDialog(null,
+		"Total Bill: "+df.format(price));	
+		
+		}else 
+		JOptionPane.showMessageDialog(null, 
+		"Invalid Order: Please try again." );	
+        
+		}while (order != 5);
+   }
+}
