@@ -1,4 +1,4 @@
-package CCE102L6546;
+package CCE1026546;
 import java.io.FileWriter;
 import javax.swing.JOptionPane;
 import java.io.FileReader;
@@ -9,7 +9,7 @@ public class StudentRecords {
 
     public static void main(String[] args) throws IOException {
         
-          while (true) {
+    	while (true) {
     		  
           String input = JOptionPane.showInputDialog(
           "Student Records\n" +
@@ -68,7 +68,6 @@ public class StudentRecords {
           }}
 
     private static void DisplayRecord() throws IOException {
-    	
           StringBuilder records = new StringBuilder();
           int ctr = 1;
 
