@@ -1,0 +1,93 @@
+package CCE102L6546;
+import java.io.FileWriter;
+import javax.swing.JOptionPane;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.BufferedReader;
+
+public class StudentRecords {
+
+    public static void main(String[] args) throws IOException {
+        
+        	while (true) {
+    		  
+          String input = JOptionPane.showInputDialog(
+          "Student Records\n" +
+          "1. Add Record\n" +	   
+          "2. Display Record\n" +
+          "3. Exit\n" +
+          "Option:" );
+ 
+          int options = Integer.parseInt(input);
+
+          switch (options) {
+          
+          case 1:
+          AddRecord();
+          break;
+          
+          case 2:
+          DisplayRecord();
+          break;
+          
+          case 3:
+          JOptionPane.showMessageDialog(null, 
+          "Thank You!", "Student Record", JOptionPane.INFORMATION_MESSAGE);
+          System.exit(0);
+          break;
+          
+          default:
+          JOptionPane.showMessageDialog(null, 
+          "Invalid", "Error", JOptionPane.ERROR_MESSAGE);
+          break;}}}
+
+    private static void AddRecord() throws IOException {
+          
+    	    String en1 = JOptionPane.showInputDialog("Enter Name:");
+          
+          if (en1 == null || en1.isEmpty()) 
+          {
+          JOptionPane.showMessageDialog(null, 
+          "Please provide a valid Name.", "Error", JOptionPane.ERROR_MESSAGE);
+          return;
+          }
+
+          String en2 = JOptionPane.showInputDialog("Enter ID:");
+          if (en2 == null || en2.isEmpty()) 
+          {
+          JOptionPane.showMessageDialog(null, 
+          "Please provide a valid ID.", "Error", JOptionPane.ERROR_MESSAGE);
+          return;
+          }
+          int id = Integer.parseInt(en2);
+          try (FileWriter writer = new FileWriter("CCE102L6546.txt", true)) 
+          {
+          writer.write(en1 + "," + id + "\n");
+          JOptionPane.showMessageDialog(null, 
+          "Record Successfully added...", "Success", JOptionPane.INFORMATION_MESSAGE);
+          }}
+
+    private static void DisplayRecord() throws IOException {
+    	
+          StringBuilder records = new StringBuilder();
+          int ctr = 1;
+
+          try (BufferedReader reader = new BufferedReader(new FileReader("CCE102L6546.txt"))) {
+          String line;
+          while ((line = reader.readLine()) != null) {
+          String[] parts = line.split(",");
+          records.append("------Student Record ").append(ctr).append("------\n");
+          records.append("Name: ").append(parts[0]).append("\n");
+          records.append("ID: ").append(parts[1]).append("\n\n");
+          ctr++;}
+
+          if (records.length() == 0) {
+          JOptionPane.showMessageDialog(null, 
+          "Sorry, No records found.", "Student Record", JOptionPane.INFORMATION_MESSAGE);
+          } else {
+          JOptionPane.showMessageDialog(null,
+          records.toString().trim(), "Student Record", JOptionPane.INFORMATION_MESSAGE);
+}
+}
+}
+}
