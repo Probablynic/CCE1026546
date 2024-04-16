@@ -10,7 +10,6 @@ public class StudentRecords {
     public static void main(String[] args) throws IOException {
         
     	while (true) {
-    		  
           String input = JOptionPane.showInputDialog(
           "Student Records\n" +
           "1. Add Record\n" +	   
@@ -43,7 +42,7 @@ public class StudentRecords {
 
     private static void AddRecord() throws IOException {
           
-    	  String en1 = JOptionPane.showInputDialog("Enter Name:");
+    String en1 = JOptionPane.showInputDialog("Enter Name:");
           
           if (en1 == null || en1.isEmpty()) 
           {
