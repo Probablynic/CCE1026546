@@ -1,0 +1,121 @@
+package CCE102L6546;
+
+import java.io.FileNotFoundException
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class LabExam {
+
+	public static void menu() {
+
+		System.out.println(" ABC COMPANY  ");
+		System.out.println("--------------");
+		System.out.println("[1] Deposit"   );
+		System.out.println("[2] Withdraw"  );
+		System.out.println("[3] Inquire"   );
+		System.out.println("[4] Exit"      );
+		System.out.println("\nOption: "    );
+	}
+
+	public static void inquire() throws FileNotFoundException
+
+	{
+		Scanner reader = new Scanner(new FileReader("transaction.txt"));
+		int ctr = 1;
+		;
+		int acnumber = 0;
+		int dammount = 0;
+
+		while (reader.hasNext()) {
+			acnumber = reader.nextInt();
+			dammount = reader.nextInt();
+
+			System.out.println("     INQUIRE TRANSACTION     ");
+			System.out.println("Account Number : " + acnumber );
+			System.out.println("Available Balance:" + dammount);
+			ctr++;
+		}
+
+	}
+
+	public static void main(String[] args) throws IOException {
+
+		Scanner s = new Scanner(System.in);
+
+		menu();
+		int option;
+		option = s.nextInt();
+		switch (option) {
+
+		case 1:
+
+			int acnumber, dammount;
+			int withdraw = 0;
+
+			System.out.println("Deposit Transaction");
+			System.out.println("-------------------");
+			System.out.println("Account Type: ");
+			String actype = s.next();
+			System.out.println("Account Number: ");
+			acnumber = s.nextInt();
+			System.out.println("Account Name: ");
+			String acname = s.next();
+			System.out.println("Address: ");
+			String address = s.next();
+			System.out.println("Contact Number: ");
+			int cnum = s.nextInt();
+			System.out.println("Deposit Ammount: ");
+			dammount = s.nextInt();
+
+			System.out.println("\nDeposit Transaction"         );
+			System.out.println("--------------------------- --");
+			System.out.println("Account Type: " + actype       );
+			System.out.println("Account number: " + acnumber   );
+			System.out.println("Account Name: " + acname       );
+			System.out.println("Address: " + address           );
+			System.out.println("Contact Number: " + cnum       );
+			System.out.println("Deposit Ammount: " + dammount  );
+
+			FileWriter writer = new FileWriter("transaction.txt", true);
+			writer.write(acnumber + " " + actype + " " + dammount + " " + withdraw + " " + acname + " " + address + " "
+					+ cnum + "\n");
+			System.out.println("Record Successfully added....");
+			writer.close();
+
+			System.out.println("Another Transaction? Y/N");
+			String opt = s.next();
+
+			break;
+
+		case 2:
+
+			withdraw edit = new withdraw();
+			try {
+				edit.main();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+
+		case 3:
+			try {
+				System.out.println();
+				inquire();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			break;
+
+		case 4:
+
+			System.out.println("Thank you for using");
+
+			break;
+		}
+		while (option != 4)
+			;
+	}
+}
+
