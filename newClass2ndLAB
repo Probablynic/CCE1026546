@@ -1,0 +1,68 @@
+package CCE102L6546;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class withdraw {
+
+	public static void main() throws IOException
+		{
+			Scanner s = new Scanner(System.in);
+			System.out.println("Withdraw Transaction");
+			System.out.println("--------------------");
+			System.out.println("Account Number: ");
+			int keynum = s.nextInt();
+			boolean found = false;
+			int SizeOfArray = 0;
+
+			Scanner CountRecords = new Scanner(new FileReader("transaction.txt"));
+
+			while (CountRecords.hasNextLine()) 
+			{
+				CountRecords.nextLine();
+				SizeOfArray++;
+			}
+			
+			int [] acnumber = new int [SizeOfArray];
+			int []  dammount = new int [SizeOfArray];
+			
+			Scanner reader = new Scanner(new FileReader("transaction.txt"));
+			
+			int index = 0;
+			
+			int newnum;
+			int newammount;
+			
+			while (reader.hasNext())
+			{
+				newnum = reader.nextInt();
+				newammount = reader.nextInt();
+				
+				if (newnum == newammount)
+				{
+					found = true;
+					dammount[index] = newammount;
+					System.out.print("Enter New Name: ");
+					acnumber[index] = s.nextInt();
+					index++;
+				}
+				else 
+				{ acnumber [index] = newnum;
+				dammount[index] = newammount;
+				index++;
+				}
+			}
+				if (found == false)
+					System.out.println("id number does not exist....");
+				
+				FileWriter writer = new FileWriter("transaction.txt");
+				
+				for (int i = 0; i <SizeOfArray; i++)
+					writer.write(acnumber[i]+" "+dammount[i]+"\n");
+				writer.close();
+			
+		}
+}
